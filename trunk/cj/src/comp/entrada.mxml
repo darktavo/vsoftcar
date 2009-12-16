@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="820" height="430">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="850" height="450">
 	<mx:Image x="10" y="10" width="310" height="222" source="images/carro.jpg"/>
 	<mx:DateChooser x="608" y="48"/>
 	<mx:ComboBox x="622" y="297"></mx:ComboBox>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="820" height="430">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="842" height="408">
 	<mx:Image x="10" y="10" width="310" height="222" source="images/carro.jpg"/>
-	<mx:Image x="500" y="198" width="310" height="222" source="images/carro.jpg"/>
+	<mx:Image x="500" y="198" width="310" height="196" source="images/carro.jpg"/>
 	<mx:ComboBox x="650" y="76"></mx:ComboBox>
 	<mx:ComboBox x="650" y="106"></mx:ComboBox>
 	<mx:TextInput x="650" y="134" fontSize="23" text="AAA 123" textAlign="center"/>
