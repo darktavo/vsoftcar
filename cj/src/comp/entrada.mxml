@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="820" height="430">
+	<mx:Image x="10" y="10" width="310" height="222" source="images/carro.jpg"/>
+	<mx:DateChooser x="608" y="48"/>
+	<mx:ComboBox x="622" y="297"></mx:ComboBox>
+	<mx:ComboBox x="622" y="327"></mx:ComboBox>
+	<mx:TextInput x="622" y="357" fontSize="23" text="AAA 123" textAlign="center"/>
+	<mx:Label x="514" y="299" text="Tipo de Tarifa"/>
+	<mx:Label x="514" y="329" text="Detalle de Tarifa"/>
+	<mx:Label x="514" y="359" text="Placa" fontSize="23"/>
+	<mx:Button x="90" y="262" label="Button" width="139" height="133" icon="@Embed(source='../images/ksnapshot.png')"/>
+	<mx:Label x="650" y="22" text="Fecha de Ingreso:"/>
+	
+</mx:Canvas>
