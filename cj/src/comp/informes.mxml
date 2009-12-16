@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="850" height="450">
+	<mx:ColumnChart x="10" y="66" id="columnchart1" width="830" height="336">
+		<mx:series>
+			<mx:ColumnSeries displayName="Series 1" yField=""/>
+		</mx:series>
+	</mx:ColumnChart>
+	<mx:Legend dataProvider="{columnchart1}"/>
+	<mx:ComboBox x="157" y="31" width="487"></mx:ComboBox>
 	
 </mx:Canvas>
