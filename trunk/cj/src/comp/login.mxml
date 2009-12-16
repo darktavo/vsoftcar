@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="350" xmlns:ns1="comp.*" height="238" >
+<mx:Script>
+	<![CDATA[
+		import mx.rpc.events.ResultEvent;
+		import mx.controls.Alert;
+		
+		public function ingresar():void{
+			srv.query_Login("select * from usuarios where user='"+user.text +  "' and passwd = '"+passwd.text +"'");
+		}
+		
+		public function query_login(event:ResultEvent):void
+		{
+			if (event.result == false)
+			{
+				Alert.show("Ingreso incorrecto");	
+			}
+			else
+			{
+				Alert.show("Bienvenido " + user.text);	
+				this.visible = false;
+			}
+		}
+	]]>
+</mx:Script>
+
+<mx:RemoteObject id="srv" source="Intercambio.Intercambio"   destination="GenericDestination" >
+	<mx:method name="query_Login"  result="query_login(event)" />
+</mx:RemoteObject>
+	<mx:Panel x="6" y="10" width="336" height="222" layout="absolute">
+		<mx:Button x="35.5" y="108" label="Entrar" click="ingresar()" width="107"/>
+		<mx:Button x="172.5" y="108" label="Cancelar" width="108"/>
+		<mx:TextInput x="120.5" y="37" id="user"/>
+		<mx:TextInput x="120.5" y="67" id="passwd" displayAsPassword="true"/>
+		<mx:Label x="36.5" y="37" text="Usuario:" color="#000000" fontWeight="bold"/>
+		<mx:Label x="35.5" y="67" text="Contrasena:" color="#000000" fontWeight="bold"/>
+	</mx:Panel>
+</mx:Canvas>

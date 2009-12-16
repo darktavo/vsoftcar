@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="comp.*" creationComplete="init();" width="884" height="584">
+<mx:Script>
+	<![CDATA[
+		import mx.managers.PopUpManager;
+      	import comp.login;
+      	import mx.controls.Alert;
+
+		import mx.rpc.events.ResultEvent;
+		import mx.collections.ArrayCollection;
+        import mx.controls.Alert;
+        import flash.utils.Timer;
+        import flash.events.TimerEvent;
+		
+			public function openLoginPopUp() : void {
+        	var createdPopUp:login = new login();
+           	PopUpManager.addPopUp(createdPopUp, DisplayObject( mx.core.Application.application ), true);
+         	PopUpManager.centerPopUp( createdPopUp );
+      	}
+		
+		private function init():void{
+			openLoginPopUp();
+
+		} 
+	]]>
+</mx:Script>
+	<mx:ViewStack x="10" y="112" id="viewstack1" width="865" height="462">
+		
+		<ns1:entrada label="Entrada" width="100%" height="100%">
+		</ns1:entrada>
+		<ns1:salida label="Salida" width="100%" height="100%">
+		</ns1:salida>
+		<ns1:informes label="Informes" width="100%" height="100%">
+		</ns1:informes>
+		<ns1:configuracion label="Configuracion" width="100%" height="100%">
+		</ns1:configuracion>
+	</mx:ViewStack>
+	<mx:TabBar x="10" y="72" dataProvider="viewstack1" width="865">
+	</mx:TabBar>
+	<mx:Label x="356" y="10" text="VSoftCar" width="226" fontSize="36"/>
+</mx:Application>
