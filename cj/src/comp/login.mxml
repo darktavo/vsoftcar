@@ -6,7 +6,7 @@
 		import mx.controls.Alert;
 		
 		public function ingresar():void{
-			srv.query_Login("select * from usuarios where user='"+user.text +  "' and passwd = '"+passwd.text +"'");
+			srv.query_Login("select * from usuarios where usuario='"+user.text +  "' and password = '"+passwd.text +"'");
 		}
 		
 		public function query_login(event:ResultEvent):void
@@ -23,8 +23,8 @@
 		}
 	]]>
 </mx:Script>
-
-<mx:RemoteObject id="srv" source="Intercambio.Intercambio"   destination="GenericDestination" >
+ 
+<mx:RemoteObject id="srv" source="VSoftCar.VSoftCar"   destination="GenericDestination" >
 	<mx:method name="query_Login"  result="query_login(event)" />
 </mx:RemoteObject>
 	<mx:Panel x="6" y="10" width="336" height="222" layout="absolute">
