@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="782" height="394">
-	<mx:TextInput x="77" y="10"/>
-	<mx:TextInput x="311" y="24" displayAsPassword="true"/>
-	<mx:TextInput x="77" y="37"/>
-	<mx:Button x="501" y="10" label="Crear Usuario" width="124"/>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="782" height="394" creationComplete="init()">
+<mx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+		import mx.rpc.events.ResultEvent;
+		import mx.controls.Alert;
+		
+		[Bindable]
+		public var arrC_Usuarios:ArrayCollection;
+		
+		public function init()
+		{
+			srv.query_Login("select * from usuarios");
+		}
+		
+		public function ingresar():void{
+			srv.query_Login("insert into usuarios (usuario,password,nombre) values ('" + txt_usuario + "','" + txt_password + "','" + txt_nombre  +"')");
+			srv.query_Login("select * from usuarios");
+		}
+		
+		public function query_login(event:ResultEvent):void
+		{
+			if (event.result == false)
+			{
+				Alert.show("Error al ingresar el usuario");	
+			}
+			else
+			{
+		arrC_Usuarios = new ArrayCollection(event.result as Array);	
+			}
+		}
+	]]>
+</mx:Script>
+ 
+<mx:RemoteObject id="srv" source="VSoftCar.VSoftCar"   destination="GenericDestination" >
+	<mx:method name="query_Login"  result="query_login(event)" />
+</mx:RemoteObject>
+
+	<mx:TextInput x="77" y="10" id="txt_nombre"/>
+	<mx:TextInput x="311" y="24" displayAsPassword="true" id="txt_password"/>
+	<mx:TextInput x="77" y="37" id="txt_usuario"/>
+	<mx:Button x="501" y="10" label="Crear Usuario" width="124" click="ingresar()"/>
 	<mx:Button x="501" y="37" label="Guardar Cambios" width="124"/>
 	<mx:Label x="10" y="12" text="Nombres:"/>
 	<mx:Label x="10" y="39" text="Login:"/>
 	<mx:Label x="262" y="26" text="Clave:"/>
-	<mx:DataGrid x="10" y="65" width="762" height="301">
+	<mx:DataGrid x="10" y="65" width="762" height="319" dataProvider="{arrC_Usuarios}">
 		<mx:columns>
-			<mx:DataGridColumn headerText="Nombres" dataField="col1" textAlign="center"/>
-			<mx:DataGridColumn headerText="Usuario" dataField="col2" textAlign="center"/>
-			<mx:DataGridColumn headerText="Clave" dataField="col3" textAlign="center"/>
+			<mx:DataGridColumn headerText="Nombres" dataField="nombre" textAlign="center"/>
+			<mx:DataGridColumn headerText="Usuario" dataField="usuario" textAlign="center"/>
+			<mx:DataGridColumn headerText="Clave" dataField="password" textAlign="center"/>
 		</mx:columns>
 	</mx:DataGrid>
 	
