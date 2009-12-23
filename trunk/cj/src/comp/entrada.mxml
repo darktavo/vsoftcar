@@ -9,6 +9,6 @@
 	<mx:Label x="514" y="329" text="Detalle de Tarifa"/>
 	<mx:Label x="514" y="359" text="Placa" fontSize="23"/>
 	<mx:Button x="90" y="262" label="Button" width="139" height="133" icon="@Embed(source='../images/ksnapshot.png')"/>
-	<mx:Label x="650" y="22" text="Fecha de Ingreso:"/>
+	<mx:Label x="608" y="22" text="Fecha y Hora de Ingreso:"/>
 	
 </mx:Canvas>
