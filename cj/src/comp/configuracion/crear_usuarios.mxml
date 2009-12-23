@@ -9,13 +9,18 @@
 		[Bindable]
 		public var arrC_Usuarios:ArrayCollection;
 		
-		public function init()
+		public function init():void
 		{
 			srv.query_Login("select * from usuarios");
 		}
 		
 		public function ingresar():void{
-			srv.query_Login("insert into usuarios (usuario,password,nombre) values ('" + txt_usuario + "','" + txt_password + "','" + txt_nombre  +"')");
+			srv.query_Login("insert into usuarios (usuario,password,nombre) values ('" + txt_usuario.text + "','" + txt_password.text + "','" + txt_nombre.text  +"')");
+			srv.query_Login("select * from usuarios");
+		}
+		
+				public function eliminar_usuario():void{
+			srv.query_Login("delete from usuarios where id = " + dtgrd_usuarios.selectedItem.id );
 			srv.query_Login("select * from usuarios");
 		}
 		
@@ -38,19 +43,31 @@
 </mx:RemoteObject>
 
 	<mx:TextInput x="77" y="10" id="txt_nombre"/>
-	<mx:TextInput x="311" y="24" displayAsPassword="true" id="txt_password"/>
+	<mx:TextInput x="77" y="64" displayAsPassword="true" id="txt_password"/>
 	<mx:TextInput x="77" y="37" id="txt_usuario"/>
 	<mx:Button x="501" y="10" label="Crear Usuario" width="124" click="ingresar()"/>
 	<mx:Button x="501" y="37" label="Guardar Cambios" width="124"/>
 	<mx:Label x="10" y="12" text="Nombres:"/>
 	<mx:Label x="10" y="39" text="Login:"/>
-	<mx:Label x="262" y="26" text="Clave:"/>
-	<mx:DataGrid x="10" y="65" width="762" height="319" dataProvider="{arrC_Usuarios}">
+	<mx:Label x="10" y="66" text="Clave:"/>
+	<mx:DataGrid x="10" y="94" width="762" height="266" dataProvider="{arrC_Usuarios}" id="dtgrd_usuarios">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombres" dataField="nombre" textAlign="center"/>
-			<mx:DataGridColumn headerText="Usuario" dataField="usuario" textAlign="center"/>
-			<mx:DataGridColumn headerText="Clave" dataField="password" textAlign="center"/>
+			<mx:DataGridColumn headerText="Password" dataField="password" textAlign="center">
+			<mx:itemRenderer>
+				<mx:Component>
+					<mx:TextInput text="{data.password}" displayAsPassword="true" />
+				</mx:Component>
+			</mx:itemRenderer>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn headerText="Usuarios" dataField="usuario" textAlign="center"/>
 		</mx:columns>
 	</mx:DataGrid>
+	<mx:Button x="633" y="10" label="Eliminar Usuario" click="eliminar_usuario()"/>
+	<mx:Button x="633" y="37" label="Actualizar Lista" click="init()"/>
+	<mx:Label x="261" y="12" text="Cedula"/>
+	<mx:TextInput x="312" y="10" id="txt_cedula" enabled="false" text="no disponible"/>
+	<mx:ComboBox x="311" y="37"></mx:ComboBox>
+	<mx:Label x="261" y="39" text="Grupo:"/>
 	
 </mx:Canvas>

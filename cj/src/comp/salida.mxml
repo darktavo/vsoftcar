@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="842" height="408">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="842" height="408" xmlns:ns1="com.hillelcoren.components.*"
+	 creationComplete="init()"
+	>
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+		import mx.controls.Alert;
+		
+		public function init():void{
+			
+		}
+		
+		public function query_login(event:ResultEvent):void
+		{
+			if (event.result == false)
+			{
+				Alert.show("Ingreso incorrecto");	
+			}
+			else
+			{
+		
+			}
+		}
+	]]>
+</mx:Script>
+ 
+<mx:RemoteObject id="srv" source="VSoftCar.VSoftCar"   destination="GenericDestination" >
+	<mx:method name="query_Login"  result="query_login(event)" />
+</mx:RemoteObject>
+
 	<mx:Image x="10" y="10" width="310" height="222" source="images/carro.jpg"/>
 	<mx:Image x="500" y="198" width="310" height="196" source="images/carro.jpg"/>
 	<mx:ComboBox x="650" y="76"></mx:ComboBox>
@@ -11,5 +41,8 @@
 	<mx:Button x="181" y="255" label="Button" width="139" height="133" icon="@Embed(source='../images/ksnapshot.png')"/>
 	<mx:DateField x="650" y="46" width="160" showToday="true" textAlign="center"/>
 	<mx:Label x="542" y="48" text="Fecha Salida:"/>
+	<ns1:AdvancedAutoComplete x="650" y="180" label="AAA 123" fontSize="20">
+	</ns1:AdvancedAutoComplete>
+
 	
 </mx:Canvas>

@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="782" height="402">
-	<mx:DataGrid x="10" y="55" width="762" height="330">
+<mx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+		import mx.rpc.events.ResultEvent;
+		import mx.controls.Alert;
+		
+		[Bindable]
+		public var arrC_Usuarios:ArrayCollection;
+		
+		public function init():void
+		{
+			srv.query_Login("select * from grupos");
+		}
+		
+		public function crear_grupo():void{
+			//srv.query_Login("insert into grupos (usuario,password,nombre) values ('" + txt_usuario.text + "','" + txt_password.text + "','" + txt_nombre.text  +"')");
+			srv.query_Login("select * from grupos");
+		}
+		
+				public function eliminar_grupo():void{
+			srv.query_Login("delete from grupos where id = " + dtgrd_grupos.selectedItem.id );
+			srv.query_Login("select * from grupos");
+		}
+		
+		public function query_login(event:ResultEvent):void
+		{
+			if (event.result == false)
+			{
+				Alert.show("Error al ingresar el usuario");	
+			}
+			else
+			{
+		arrC_Usuarios = new ArrayCollection(event.result as Array);	
+			}
+		}
+	]]>
+</mx:Script>
+ 
+<mx:RemoteObject id="srv" source="VSoftCar.VSoftCar"   destination="GenericDestination" >
+	<mx:method name="query_Login"  result="query_login(event)" />
+</mx:RemoteObject>
+	<mx:DataGrid x="10" y="55" width="762" height="330" id="dtgrd_grupos">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombre" dataField="col1"/>
 			<mx:DataGridColumn headerText="Usuarios" dataField="col2"/>
 			<mx:DataGridColumn headerText="Accion" dataField="col3"/>
 		</mx:columns>
 	</mx:DataGrid>
-	<mx:TextInput x="77" y="10"/>
+	<mx:TextInput x="77" y="10" id="txt_nombre"/>
 	<mx:Label x="10" y="12" text="Nombre:"/>
-	<mx:Button x="258" y="10" label="Crear Grupo"/>
+	<mx:Button x="258" y="10" label="Crear Grupo" click="crear_grupo()"/>
+	<mx:Button x="360" y="10" label="Eliminar Grupo" click="eliminar_grupo()"/>
 	
 </mx:Canvas>
